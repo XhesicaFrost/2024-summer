@@ -13,13 +13,17 @@ class player(Sprite):
         self.screen_rect = screen.get_rect()
         self.rect.centery = self.screen_rect.centery
         self.rect.centerx = self.screen_rect.centerx
-        self.move_x = [10, -10, 0, 0]
-        self.move_y = [0, 0, 10, -10]
+        self.move_x = [20, -20, 0, 0]
+        self.move_y = [0, 0, 20, -20]
         self.move_left = False
         self.move_right = False
         self.move_up = False
         self.move_down = False
         self.hide=False
+        self.hide_gap=3
+        self.hide_during=3
+        self.last_hide=-3
+        self.hide_ready=False
     def update(self):
         if self.move_up == True and self.rect.top + self.move_y[3]>=0:
             self.rect.centerx = self.rect.centerx + self.move_x[3]

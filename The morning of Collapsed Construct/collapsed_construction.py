@@ -10,18 +10,23 @@ class collapsed_construction(Sprite):
         self.screen = screen
         self.image = pygame.image.load("photo/坍缩体.png")
         self.rect = self.image.get_rect()
+        self.rect_draw=self.rect.copy()
+       # print(self.rect.center,self.rect_draw.center)
+        self.rect.width=30
+        self.rect.height=30
+        #print(self.rect.center, self.rect_draw.center)
+        self.rect.center=self.rect_draw.center
         self.screen_rect = screen.get_rect()
-        self.rect.left = 100
-        self.rect.right = 100
         self.direction_x = random.randint(-10, 10)
         self.direction_y = random.randint(-10, 10)
         while (self.direction_x == 0 and self.direction_y == 0):
             self.direction_x = random.randint(-10, 10)
             self.direction_y = random.randint(-10, 10)
-        self.speed=10
+        self.speed=15
     def blitme(self):
-        self.screen.blit(self.image, self.rect)
-
+        self.rect_draw.center=self.rect.center
+        self.screen.blit(self.image, self.rect_draw)
+       # self.screen.fill((100,200,200),self.rect) 这里是碰撞箱
     def update_direction(self, Player):
         if Player.hide == True :
             self.direction_x = -self.direction_x+random.randint(-500,500)
