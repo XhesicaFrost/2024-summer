@@ -22,7 +22,7 @@ class collapsed_construction(Sprite):
         while (self.direction_x == 0 and self.direction_y == 0):
             self.direction_x = random.randint(-10, 10)
             self.direction_y = random.randint(-10, 10)
-        self.speed=15
+        self.speed=20
     def blitme(self):
         self.rect_draw.center=self.rect.center
         self.screen.blit(self.image, self.rect_draw)
@@ -37,11 +37,14 @@ class collapsed_construction(Sprite):
         while(self.direction_x == 0 and self.direction_y ==0):
             self.direction_x = random.randint(-10, 10)
             self.direction_y = random.randint(-10, 10)
-    def update(self, Player):
+    def update(self, Player,status,ai_settings):
         if self.rect.top <= 0 or self.rect.bottom >= self.screen_rect.bottom or \
                 self.rect.left <= self.screen_rect.left or self.rect.right >= self.screen_rect.right:
             self.update_direction(Player)
-        k=self.speed/math.sqrt(self.direction_x*self.direction_x+self.direction_y*self.direction_y)
+        if status.game_KEYDOWN ==True :
+            k=self.speed/math.sqrt(self.direction_x*self.direction_x+self.direction_y*self.direction_y)
+        else:
+            k = self.speed /math.sqrt(self.direction_x * self.direction_x + self.direction_y * self.direction_y)/(ai_settings.time_speed_down+2)
         change_x=self.direction_x*k
         change_y=self.direction_y*k
         self.rect.centerx+=change_x

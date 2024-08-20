@@ -1,7 +1,6 @@
 import pygame
 import game_functions as gf
 from Settings import Settings
-import game_functions as gf
 from pygame.sprite import Group
 from player import player
 from collapsed_construction import collapsed_construction
@@ -13,6 +12,8 @@ from Button import End_button
 from Photo import Photo
 from explosive import Explosive
 from explosive import Warning
+from realm import Realm
+from tainted_carcass import Tainted_carcass
 
 
 def run_wait(screen, ai_settings, background, status, buttons, title):
@@ -33,7 +34,6 @@ def ini_buttons(buttons, screen):
         button.rect.centery = la + gap
         la = button.rect.centery
 
-
 def run_game():
     pygame.init()
     ai_settings = Settings()
@@ -45,20 +45,24 @@ def run_game():
     ini_buttons(buttons, screen)
     background = Background(screen)
     status = Status()
+    realms = Group()
     Player = player(ai_settings, screen)
-    Collapsed = collapsed_construction(ai_settings, screen)
     Collapseds = Group()
     explosives = Group()
     warnings = Group()
     messages = Group()
+    tainted_carcasses = Group()
     clock = pygame.time.Clock()
     fps = 60
     while True:
         if status.game_active == True:
-            gf.check_event(screen, ai_settings, Player)
-            gf.update_items(screen, ai_settings, Player, Collapseds, explosives, warnings, messages)
-            gf.update_screen(screen, ai_settings, Player, Collapseds, background, explosives, warnings, messages)
-            gf.check_collide(screen, ai_settings, Player, Collapseds, explosives,status,background,warnings)
+            gf.check_event(screen, ai_settings, Player ,status)
+            gf.update_items(screen, ai_settings, Player, Collapseds, explosives, warnings, messages, realms,
+                            tainted_carcasses,status)
+            gf.update_screen(screen, ai_settings, Player, Collapseds, background, explosives, warnings, messages,
+                             realms, tainted_carcasses)
+            gf.check_collide(screen, ai_settings, Player, Collapseds, explosives, status, background, warnings, realms,
+                             tainted_carcasses)
         else:
             run_wait(screen, ai_settings, background, status, buttons, title)
         clock.tick(fps)
