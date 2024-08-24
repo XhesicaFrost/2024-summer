@@ -4,10 +4,10 @@ from pygame.sprite import Sprite
 
 
 class Message(Sprite):
-    def __init__(self, screen, st_x, st_y, msg,text_color=(46, 49, 124),background_color=None):
+    def __init__(self, screen, st_x, st_y, msg,text_color=(46, 49, 124),background_color=None,size=50,place=0):
         super().__init__()
         self.screen = screen
-        self.font = pygame.font.Font("font/DIN1451-36breit-1.ttf", 50)
+        self.font = pygame.font.Font("font/DIN1451-36breit-1.ttf", size)
         self.text_color = text_color
         if background_color!=None :
             self.background_color = background_color
@@ -17,5 +17,6 @@ class Message(Sprite):
         self.msg_image_rect = self.msg_image.get_rect()
         self.msg_image_rect.centerx = st_x
         self.msg_image_rect.centery = st_y
+        self.place=place
     def blitme(self):
         self.screen.blit(self.msg_image, self.msg_image_rect)
