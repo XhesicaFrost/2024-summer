@@ -2,6 +2,8 @@
 
 一个良罢了
 
+用github做个记录
+
 Homework of small term
 
 四种敌人，两种坍缩范式，四个关卡和一个随机模式
