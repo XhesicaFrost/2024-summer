@@ -66,34 +66,34 @@ def encounter_2_carcasses(screen, ai_settings, now_tim, tainted_carcasses):
     k = random.randint(1, 4)
     if k == 1:
         gap = random.randint(10, ai_settings.screen_height - 300)
-        for i in range(10, gap, 30):
+        for i in range(10, gap, 70):
             tainted_carcass = Tainted_carcass(screen, 0, i, 0)
             tainted_carcasses.add(tainted_carcass)
-        for i in range(gap + 300, ai_settings.screen_height, 30):
+        for i in range(gap + 300, ai_settings.screen_height, 70):
             tainted_carcass = Tainted_carcass(screen, 0, i, 0)
             tainted_carcasses.add(tainted_carcass)
     if k == 2:
         gap = random.randint(10, ai_settings.screen_height - 300)
-        for i in range(10, gap, 30):
+        for i in range(10, gap, 70):
             tainted_carcass = Tainted_carcass(screen, ai_settings.screen_width, i, 1)
             tainted_carcasses.add(tainted_carcass)
-        for i in range(gap + 300, ai_settings.screen_height, 30):
+        for i in range(gap + 300, ai_settings.screen_height, 70):
             tainted_carcass = Tainted_carcass(screen, ai_settings.screen_width, i, 1)
             tainted_carcasses.add(tainted_carcass)
     if k == 3:
         gap = random.randint(10, ai_settings.screen_width - 300)
-        for i in range(10, gap, 30):
+        for i in range(10, gap, 70):
             tainted_carcass = Tainted_carcass(screen, i, 0, 2)
             tainted_carcasses.add(tainted_carcass)
-        for i in range(gap + 300, ai_settings.screen_width, 30):
+        for i in range(gap + 300, ai_settings.screen_width, 70):
             tainted_carcass = Tainted_carcass(screen, i, 0, 2)
             tainted_carcasses.add(tainted_carcass)
     if k == 4:
         gap = random.randint(10, ai_settings.screen_width - 300)
-        for i in range(10, gap, 30):
+        for i in range(10, gap, 70):
             tainted_carcass = Tainted_carcass(screen, i, ai_settings.screen_height, 3)
             tainted_carcasses.add(tainted_carcass)
-        for i in range(gap + 300, ai_settings.screen_width, 30):
+        for i in range(gap + 300, ai_settings.screen_width, 70):
             tainted_carcass = Tainted_carcass(screen, i, ai_settings.screen_height, 3)
             tainted_carcasses.add(tainted_carcass)
 
@@ -274,7 +274,7 @@ def encounter_3_create(screen, ai_settings, Player, Collapseds, explosives, warn
     if encounter.tim>encounter.gap[encounter.kind]-encounter.warning_gap[encounter.kind]:
         message = Message(screen, 200, 100, "AIRSTRIKE", (222, 28, 49), 40, 40)
         messages.add(message)
-        print("len=",len(messages))
+      #  print("len=",len(messages))
     elif encounter.exe == 0:
         encounter_3_airstrike(screen, ai_settings, now_tim, warnings, Player)
         encounter.exe = 1

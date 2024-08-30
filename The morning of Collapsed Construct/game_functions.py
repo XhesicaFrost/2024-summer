@@ -12,6 +12,7 @@ from tainted_carcass import Tainted_carcass
 import encounters as enc
 from collapse_paradigm import Collapse_paradigm_nonlinear_motion
 from collapse_paradigm import Collapse_paradigm_image_corruption
+import warnings as wa
 def swap(x, y):
     return y, x
 
@@ -75,6 +76,11 @@ def check_event(screen, ai_settings, Player ,status):
             elif event.type == pygame.KEYDOWN:
                 if event.key!=pygame.K_q:
                     status.game_KEYDOWN_cnt+=1
+                if event.key==pygame.K_p:
+                    if ai_settings.test==True:
+                        ai_settings.test=False
+                    else:
+                        ai_settings.test=True
                 check_keydown(event, screen, ai_settings, Player)
             elif event.type == pygame.KEYUP:
                 if event.key != pygame.K_q:
@@ -391,7 +397,7 @@ def update_encounter(encounter,now_tim,status,ai_settings):
     random_create_encounter(encounter,now_tim,status,ai_settings)
 def random_try_create_collapsed_paradigms(screen,ai_settings,Player,collapsed_paradigms,collapsed_paradigm_list,now_tim,status,k=-1):
     if k==-1:
-        k=random.randint(0,10000)
+        k=random.randint(0,1000)
     if k>collapsed_paradigm_list.num:
         return
     if collapsed_paradigm_list.active[k] == False:
@@ -472,8 +478,8 @@ def reset(Player, Collapseds, explosives, warnings, realms, tainted_carcasses,st
     encounter.tim=0
     ai_settings.reini()
     pygame.event.get()
-    for i in collapsed_paradigm_list.active:
-        i=False
+    collapsed_paradigm_list.active[0]=False
+    collapsed_paradigm_list.active[1] = False
     pygame.mixer.music.load('music/main.mp3')
     pygame.mixer.music.play(loops=-1)
 def check_collide(screen, ai_settings, Player, Collapseds, explosives, status, background, warnings, realms,
@@ -487,7 +493,7 @@ def check_collide(screen, ai_settings, Player, Collapseds, explosives, status, b
     len1 += len(collide_result)
     collide_result = pygame.sprite.spritecollide(Player, tainted_carrasses, False)
     len1 += len(collide_result)
-    if len1 != 0 and Player.hide == False and 1:
+    if len1 != 0 and Player.hide == False and ai_settings.test:
         end_game(screen, ai_settings, Player, Collapseds, status, background)
     if status.game_active == False:
         reset(Player, Collapseds, explosives, warnings, realms, tainted_carrasses,status,encounter,collapsed_paradigm_list,collapsed_paradigms,ai_settings)
@@ -554,6 +560,7 @@ def update_screen(screen, ai_settings, Player, Collapseds, background, explosive
                   tainted_carcasses,collapsed_paradigms,status):
     # screen.fill(ai_settings.screen_color)
    # print("len=",len(Collapseds))
+    wa.filterwarnings("ignore")
     if background.show==0:
         background.blitme2()
     else :

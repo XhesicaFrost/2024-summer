@@ -22,6 +22,7 @@ from collapse_paradigm import Collapse_paradigm
 from Button import Story_mode_choose_button
 from Button import End_show_story_button
 import stroy as sty
+import warnings as wa
 
 def run_wait(screen, ai_settings, background, status, buttons, title):
     gf.check_start(screen, ai_settings, status, buttons)
@@ -73,6 +74,8 @@ def ini_buttons(buttons, screen):
 def run_game():
     pygame.init()
     pygame.mixer.init()
+    wa.filterwarnings("ignore")
+    pygame.display.set_caption("The morning of Collapsed Construct")
     ai_settings = Settings()
     screen = pygame.display.set_mode(
         (ai_settings.screen_width, ai_settings.screen_height)
@@ -110,7 +113,6 @@ def run_game():
         elif status.game_active == True and status.game_MODEL == 0:
             run_choose_model(screen, ai_settings, background, status, buttons, title)
         elif status.game_active == True and status.game_MODEL ==2:
-            #print("A")
             sty.update_story(screen, ai_settings, Player, Collapseds, explosives, warnings, messages, realms,
                             tainted_carcasses, status, encounter, collapsed_paradigm_list, collapsed_paradigms,background)
             if status.game_active==False:

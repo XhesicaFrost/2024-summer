@@ -17,27 +17,27 @@ class Story_control():
         self.last_change=now_tim
     def story_1(self,now_tim=None):
         self.reini()
-        self.tim=10
+        self.tim=30
         if now_tim!=None:
             self.begin=now_tim
             self.last_change = now_tim
     def story_2(self,now_tim=None):
         self.reini()
-        self.tim=10
+        self.tim=30
         self.la_bomb=0
         if now_tim!=None:
             self.begin=now_tim
             self.last_change = now_tim
     def story_3(self,now_tim=None):
         self.reini()
-        self.tim=10
+        self.tim=30
         self.la_bomb=0
         if now_tim!=None:
             self.begin=now_tim
             self.last_change = now_tim
     def story_4(self,now_tim=None):
         self.reini()
-        self.tim=10
+        self.tim=30
         self.la_bomb=0
         if now_tim!=None:
             self.begin=now_tim
@@ -293,7 +293,7 @@ def update_story_1(screen, ai_settings, Player, Collapseds, explosives, warnings
              story_control.existing += (now_tim-story_control.last_change)/radio
              story_control.last_change=now_tim
         else :
-             print("AA")
+             #print("AA")
              win_story_1(screen, ai_settings, Player, Collapseds, explosives, warnings, messages, realms,
                             tainted_carcasses, status, encounter, collapsed_paradigm_list, collapsed_paradigms,story_control,background)
         #print("last=",story_control.last_change)
@@ -350,10 +350,10 @@ def update_story_2(screen, ai_settings, Player, Collapseds, explosives, warnings
                 encounter.tim = encounter.gap[encounter.kind]
                 encounter.kind = 3
                 encounter.begin = now_tim
-            print("SUS")
+           # print("SUS")
         if encounter.kind !=0:
             gf.update_encounter(encounter, now_tim, status, ai_settings)
-            print("UPDATE")
+            #print("UPDATE")
             if encounter.kind==1:
                 enc.encounter_1_create(screen, ai_settings, Player, Collapseds, explosives, warnings, messages, realms,
                        tainted_carcasses, status, now_tim, encounter)
@@ -366,7 +366,7 @@ def update_story_2(screen, ai_settings, Player, Collapseds, explosives, warnings
         story_control.existing += (now_tim - story_control.last_change) / radio
         story_control.last_change = now_tim
     else:
-        print("AA")
+       # print("AA")
         win_story_2(screen, ai_settings, Player, Collapseds, explosives, warnings, messages, realms,
                     tainted_carcasses, status, encounter, collapsed_paradigm_list, collapsed_paradigms, story_control,
                     background)
@@ -394,8 +394,8 @@ def update_story_3(screen, ai_settings, Player, Collapseds, explosives, warnings
             story_control.last_change = now_tim
         else:
             story_control.last_change = now_tim
-            k=random.randint(1,2)
-            if k==1:
+            k=random.randint(1,100)
+            if k!=1:
                 enc.encounter_4_collapsed_constructions(screen,ai_settings,Player,Collapseds)
             else:
                 enc.encounter_2_carcasses(screen, ai_settings, now_tim, tainted_carcasses)
@@ -414,10 +414,10 @@ def update_story_3(screen, ai_settings, Player, Collapseds, explosives, warnings
             encounter.begin = now_tim
             encounter.tim = encounter.gap[encounter.kind]
             encounter.la_change = now_tim
-            print("SUS")
+           # print("SUS")
         if encounter.kind !=0:
             gf.update_encounter(encounter, now_tim, status, ai_settings)
-            print("UPDATE")
+            #print("UPDATE")
             if encounter.kind==1:
                 enc.encounter_1_create(screen, ai_settings, Player, Collapseds, explosives, warnings, messages, realms,
                        tainted_carcasses, status, now_tim, encounter)
@@ -435,7 +435,7 @@ def update_story_3(screen, ai_settings, Player, Collapseds, explosives, warnings
         story_control.existing += (now_tim - story_control.last_change) / radio
         story_control.last_change = now_tim
     else:
-        print("AA")
+      #  print("AA")
         win_story_3(screen, ai_settings, Player, Collapseds, explosives, warnings, messages, realms,
                     tainted_carcasses, status, encounter, collapsed_paradigm_list, collapsed_paradigms, story_control,
                     background)
@@ -488,10 +488,10 @@ def update_story_4(screen, ai_settings, Player, Collapseds, explosives, warnings
             encounter.begin = now_tim
             encounter.tim = encounter.gap[encounter.kind]
             encounter.la_change = now_tim
-            print("SUS")
+           # print("SUS")
         if encounter.kind !=0:
             gf.update_encounter(encounter, now_tim, status, ai_settings)
-            print("UPDATE")
+            #print("UPDATE")
             if encounter.kind==1:
                 enc.encounter_1_create(screen, ai_settings, Player, Collapseds, explosives, warnings, messages, realms,
                        tainted_carcasses, status, now_tim, encounter)
@@ -509,7 +509,7 @@ def update_story_4(screen, ai_settings, Player, Collapseds, explosives, warnings
         story_control.existing += (now_tim - story_control.last_change) / radio
         story_control.last_change = now_tim
     else:
-        print("AA")
+      #  print("AA")
         win_story_4(screen, ai_settings, Player, Collapseds, explosives, warnings, messages, realms,
                     tainted_carcasses, status, encounter, collapsed_paradigm_list, collapsed_paradigms, story_control,
                     background)
@@ -538,8 +538,8 @@ def update_story(screen, ai_settings, Player, Collapseds, explosives, warnings, 
             gf.check_event(screen,ai_settings, Player, status)
             update_story_1(screen, ai_settings, Player, Collapseds, explosives, warnings, messages, realms,
                                 tainted_carcasses, status, encounter, collapsed_paradigm_list, collapsed_paradigms,story_control,background)
-            if status.chapter==2:
-                print(status.game_KEYDOWN_cnt,status.game_KEYDOWN)
+          #  if status.chapter==2:
+             #   print(status.game_KEYDOWN_cnt,status.game_KEYDOWN)
         if status.chapter==2:
             gf.check_event(screen, ai_settings, Player, status)
             update_story_2(screen, ai_settings, Player, Collapseds, explosives, warnings, messages, realms,

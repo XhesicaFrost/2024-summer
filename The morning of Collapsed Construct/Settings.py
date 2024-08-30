@@ -11,7 +11,7 @@ class Settings():
         self.num_collapseds =1
         self.num_realms=10
         self.num_warnings=5
-        self.num_tainted_carcasses=10
+        self.num_tainted_carcasses=5
         self.explosive_exist = 0.5
         self.warning_exist=1
         self.explosive_gap=30
@@ -20,6 +20,7 @@ class Settings():
         self.move_y=[0,0,1,-1]
         self.time_speed_up=3
         self.time_speed_down=5
+        self.test=True
     def reini(self):
         self.screen_width = 1200
         self.screen_height = 800

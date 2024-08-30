@@ -1,16 +1,18 @@
 from PIL import Image
-import numpy as np
+import os
 
-# 读取图片
-image = Image.open("player_2.png").convert('RGBA')  # 确保图像是RGBA格式
-data = np.array(image)
+# 获取当前目录
+current_directory = os.getcwd()
 
-    # 创建掩码：所有非黑色的部分
-mask = np.any(data[:, :, :3] != [0, 0, 0], axis=-1)
+# 遍历当前目录下的所有文件
+for filename in os.listdir(current_directory):
+    if filename.lower().endswith('.png'):
+        # 打开 PNG 图片
+        img_path = os.path.join(current_directory, filename)
+        img = Image.open(img_path)
 
-    # 将有颜色的部分改为黑色
-data[mask, :3] = [0, 0, 0]  # 保留透明度
+        # 重新保存 PNG 图片
+        img.save(img_path)
+        print(f"Saved: {filename}")
 
-    # 保存为新的PNG图片
-new_image = Image.fromarray(data)
-new_image.save("player_2_black.png")
+print("All PNG images have been processed.")

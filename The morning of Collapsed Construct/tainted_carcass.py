@@ -16,7 +16,7 @@ class Tainted_carcass(Sprite):
         for i in range(1, 11):
             self.image_corruption.append(pygame.image.load("photo/tainted carcass_black" + str(i) + ".png"))
             self.image_corruption_rect.append(self.image[i - 1].get_rect())
-        self.kind_gap=5
+        self.kind_gap=10
         self.rect=pygame.Rect(st_x,st_y,18,28)
         self.direction=direction
         self.kind=5
@@ -24,7 +24,7 @@ class Tainted_carcass(Sprite):
         self.speed=5
     def update(self,now_tim,ai_settings,status):
         if self.la_change==self.kind_gap:
-            self.kind=(self.kind+1)%10
+            self.kind=(self.kind+2)%10
             self.la_change=0
         else:
             self.la_change+=1
